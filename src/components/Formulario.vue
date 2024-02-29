@@ -9,6 +9,8 @@
 
   const error = ref('');
 
+  const emit = defineEmits(['obtener-clima']);
+
   const paises = [
     { codigo: 'US', nombre: 'Estados Unidos' },
     { codigo: 'MX', nombre: 'México' },
@@ -26,6 +28,7 @@
       return;
     }
     error.value = '';
+    emit('obtener-clima', busqueda);
     console.log('busqueda');
   }
 
@@ -52,7 +55,7 @@
         id="pais"
         v-model="busqueda.pais"
       >
-        <option value=""> -- Seleccione un País -- </option>
+        <option value="" style="color: black" > -- Seleccione un País -- </option>
         <option v-for="pais in paises" :value="pais.codigo" style="color: black">{{pais.nombre}}</option>
       </select>
     </div>
